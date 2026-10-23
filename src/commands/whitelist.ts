@@ -55,6 +55,14 @@ export async function handleWhitelistCommand(
     return;
   }
 
+  if (interaction.guildId !== config.guildId) {
+    await interaction.reply({
+      content: "This command is only available in the configured server.",
+      ephemeral: true
+    });
+    return;
+  }
+
   const subcommand = interaction.options.getSubcommand();
 
   if (subcommand === "add") {
